@@ -652,11 +652,12 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 2f25909f-7e2e-4416-a97c-0395c4347a71
-  projectName: 
+  projectName: PeanutPlatformer (1)
   organizationId: wesket
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

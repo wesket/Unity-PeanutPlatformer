@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SimplePlatformController : MonoBehaviour {
 
@@ -11,7 +12,12 @@ public class SimplePlatformController : MonoBehaviour {
 	public float maxSpeed = 5f;
 	public float jumpForce = 1000f;
 	public Transform groundCheck;
+	public Text countText;
+	public Text timer;
+	public GameObject gameOverText;
+	public float timeLeft = 60;
 
+	private int count;
 	private bool grounded = false;
 	private Animator anim;
 	private Rigidbody2D rb2d;
@@ -19,6 +25,9 @@ public class SimplePlatformController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
 	{
+		count = 0;
+		SetCountText ();
+		SetTimerText ();
 		anim = GetComponent<Animator> ();
 		rb2d = GetComponent<Rigidbody2D> ();
 	}
@@ -32,6 +41,15 @@ public class SimplePlatformController : MonoBehaviour {
 		if (Input.GetButtonDown ("Jump") && grounded)
 		{
 			jump = true;
+		}
+
+		timeLeft -= Time.deltaTime;
+		SetTimerText ();
+
+		if (timeLeft <= 0) 
+		{
+			gameOverText.SetActive (true);
+
 		}
 	}
 
@@ -73,8 +91,7 @@ public class SimplePlatformController : MonoBehaviour {
 			jump = false;
 		}
 	}
-
-
+		
 	void Flip ()
 	{
 		facingRight = !facingRight;
@@ -87,4 +104,30 @@ public class SimplePlatformController : MonoBehaviour {
 
 		transform.localScale = theScale;
 	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag ("Pick Up")) 
+		{
+			count++;
+			SetCountText ();
+		}
+	}
+
+	void SetCountText ()
+	{
+		countText.text = "Count: " + count.ToString ();
+
+	}
+
+	void SetTimerText()
+	{
+		timer.text = "Time: " + timeLeft.ToString();
+
+		if (timeLeft <= 0) 
+		{
+			timer.text = "Time's up";
+		}
+	}
+
 }
