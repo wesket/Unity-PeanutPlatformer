@@ -8,16 +8,18 @@ public class SimplePlatformController : MonoBehaviour {
 	[HideInInspector] public bool facingRight = true;
 	[HideInInspector] public bool jump = true;
 
+	public float hitPoints = 50;
 	public float moveForce = 365f;
 	public float maxSpeed = 5f;
 	public float jumpForce = 1000f;
 	public Transform groundCheck;
 	public Text countText;
 	public Text timer;
+	public Text hitPointsText;
 	public GameObject gameOverText;
 	public float timeLeft = 60;
 
-	private int count;
+	private int count = 0;
 	private bool grounded = false;
 	private Animator anim;
 	private Rigidbody2D rb2d;
@@ -25,9 +27,10 @@ public class SimplePlatformController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
 	{
-		count = 0;
 		SetCountText ();
 		SetTimerText ();
+		SetHitPointText ();
+
 		anim = GetComponent<Animator> ();
 		rb2d = GetComponent<Rigidbody2D> ();
 	}
@@ -50,6 +53,11 @@ public class SimplePlatformController : MonoBehaviour {
 		{
 			gameOverText.SetActive (true);
 
+		}
+
+		if (hitPoints <= 0) 
+		{
+			gameOverText.SetActive (true);
 		}
 	}
 
@@ -112,6 +120,7 @@ public class SimplePlatformController : MonoBehaviour {
 			count++;
 			SetCountText ();
 		}
+			
 	}
 
 	void SetCountText ()
@@ -129,5 +138,28 @@ public class SimplePlatformController : MonoBehaviour {
 			timer.text = "Time's up";
 		}
 	}
+
+	void SetHitPointText ()
+	{
+		hitPointsText.text = "Hitpoints: " + hitPoints.ToString ();
+
+		if (hitPoints <= 0) 
+		{
+			hitPointsText.text = "Dead";
+		}
+	}
+
+	public void SetHitPoint(float h)
+	{
+		SetHitPointText ();
+		hitPoints = h;
+	}
+
+	public float GetHitPoint()
+	{
+		return hitPoints;
+	}
+
+
 
 }
