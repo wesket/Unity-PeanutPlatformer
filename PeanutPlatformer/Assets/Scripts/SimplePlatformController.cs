@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SimplePlatformController : MonoBehaviour {
@@ -18,18 +19,22 @@ public class SimplePlatformController : MonoBehaviour {
 	public Text hitPointsText;
 	public GameObject gameOverText;
 	public float timeLeft = 60;
+    private string sceneName;
 
 	private int count = 0;
 	private bool grounded = false;
 	private Animator anim;
 	private Rigidbody2D rb2d;
 
-	// Use this for initialization
-	void Awake () 
+    // Use this for initialization
+    void Awake () 
 	{
 		SetCountText ();
 		SetTimerText ();
 		SetHitPointText ();
+
+	    Scene currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
 
 		anim = GetComponent<Animator> ();
 		rb2d = GetComponent<Rigidbody2D> ();
@@ -69,13 +74,18 @@ public class SimplePlatformController : MonoBehaviour {
 		anim.SetFloat("Speed", Mathf.Abs(h));
 
 		//If we are under the speedlimit you can speed up
-		if (h * rb2d.velocity.x < maxSpeed) 
+		if (h * rb2d.velocity.x < maxSpeed && sceneName == "Level2") 
 		{
-			rb2d.AddForce (Vector2.right * h * moveForce);
+			rb2d.AddForce (Vector2.left * h * moveForce);
 		}
 
-		//If its over maxspeed set it to maxspeed.
-		if (Mathf.Abs (rb2d.velocity.x) > maxSpeed) 
+	    if (h * rb2d.velocity.x < maxSpeed && sceneName == "Main")
+	    {
+	        rb2d.AddForce(Vector2.right * h * moveForce);
+	    }
+
+        //If its over maxspeed set it to maxspeed.
+        if (Mathf.Abs (rb2d.velocity.x) > maxSpeed) 
 		{	
 			//Mathf return 1 if its a positive number, -1 if its a negative number
 			rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
