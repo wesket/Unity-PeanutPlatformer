@@ -28,10 +28,13 @@ public class PickUp : MonoBehaviour {
 		{
             source.PlayOneShot(pickUpSound, pickUpVolume);
 
-            rend = GetComponent<MeshRenderer>();
+            gameObject.SetActive(false);
+
+            /*rend = GetComponent<MeshRenderer>();
             rend.enabled = false;
             circleCol = GetComponent<CircleCollider2D>();
-            circleCol.enabled = false;
+            circleCol.enabled = false;*/
+
             //Destroy (gameObject);
 		}
 	}

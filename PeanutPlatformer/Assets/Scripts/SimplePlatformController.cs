@@ -54,6 +54,7 @@ public class SimplePlatformController : MonoBehaviour {
 
 		timeLeft -= Time.deltaTime;
 		SetTimerText ();
+        SetHitPointText();
 
 		if (timeLeft <= 0) 
 		{
@@ -126,14 +127,20 @@ public class SimplePlatformController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.CompareTag ("Pick Up")) 
+		if (other.gameObject.CompareTag ("Pick Up"))
 		{
-			count++;
+		    count = count++;
 			SetCountText ();
 		}
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Spikes"))
-        {
-            anim.SetTrigger("Die");
+	    if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Spikes"))
+	    {
+	        //hitPoints = hitPoints - 10;
+
+	        if (hitPoints <= 0)
+	        {
+	            anim.SetTrigger("Die");
+            }
+	    
             //hitPoints = hitPoints - 10;
         }
     }

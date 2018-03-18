@@ -6,7 +6,11 @@ public class Spikes : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		other.GetComponent<SimplePlatformController>().SetHitPoint(other.GetComponent<SimplePlatformController>().GetHitPoint() - 25);
-		Destroy (gameObject);
+	    if (other.GetComponent<SimplePlatformController>() != null)
+	    {
+	        other.GetComponent<SimplePlatformController>().SetHitPoint(other.GetComponent<SimplePlatformController>().GetHitPoint() - 10);
+	        Destroy(gameObject);
+        }
+
 	}
 }

@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingRight: 1
   jump: 1
-  hitPoints: 50
+  hitPoints: 100
   moveForce: 300
   maxSpeed: 3
   jumpForce: 725
@@ -1701,6 +1701,10 @@ Prefab:
     - target: {fileID: 1750718929181008, guid: f4b4055ad78c34e439d12bd7434c32a1, type: 2}
       propertyPath: m_Name
       value: spikes (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750718929181008, guid: f4b4055ad78c34e439d12bd7434c32a1, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4b4055ad78c34e439d12bd7434c32a1, type: 2}
@@ -2935,6 +2939,10 @@ Prefab:
     - target: {fileID: 61850567164341160, guid: f4b4055ad78c34e439d12bd7434c32a1,
         type: 2}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750718929181008, guid: f4b4055ad78c34e439d12bd7434c32a1, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

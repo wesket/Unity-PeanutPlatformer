@@ -43,9 +43,16 @@ public class Patrol : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.GetComponent<SimplePlatformController>() != null)
         {
+            other.GetComponent<SimplePlatformController>().SetHitPoint(other.GetComponent<SimplePlatformController>().GetHitPoint() - 10);
             Destroy(gameObject);
         }
+
+        /*if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }*/
+
     }
 }
