@@ -16,6 +16,7 @@ TagManager:
   - Pick Up
   - Ground
   - Spikes
+  - outOfBounds
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - Enemies
   - Pickups
   - Ground
-  - 
+  - OutOfBounds
   - 
   - 
   - 

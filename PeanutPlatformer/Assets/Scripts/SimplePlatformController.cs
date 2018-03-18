@@ -43,6 +43,7 @@ public class SimplePlatformController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+
 		//Check if linecast is casting to layer ground 
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
@@ -109,7 +110,7 @@ public class SimplePlatformController : MonoBehaviour {
 			jump = false;
 		}
 	}
-		
+    
 	void Flip ()
 	{
 		facingRight = !facingRight;
@@ -130,7 +131,6 @@ public class SimplePlatformController : MonoBehaviour {
 			count++;
 			SetCountText ();
 		}
-			
 	}
 
 	void SetCountText ()
@@ -169,7 +169,5 @@ public class SimplePlatformController : MonoBehaviour {
 	{
 		return hitPoints;
 	}
-
-
 
 }
