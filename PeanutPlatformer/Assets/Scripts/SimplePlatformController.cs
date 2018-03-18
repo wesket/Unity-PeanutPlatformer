@@ -110,8 +110,8 @@ public class SimplePlatformController : MonoBehaviour {
 			jump = false;
 		}
 	}
-    
-	void Flip ()
+
+    void Flip ()
 	{
 		facingRight = !facingRight;
 
@@ -131,7 +131,12 @@ public class SimplePlatformController : MonoBehaviour {
 			count++;
 			SetCountText ();
 		}
-	}
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Spikes"))
+        {
+            anim.SetTrigger("Die");
+            //hitPoints = hitPoints - 10;
+        }
+    }
 
 	void SetCountText ()
 	{
